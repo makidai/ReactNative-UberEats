@@ -1,13 +1,13 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { Divider } from "react-native-elements";
-import Abount from "../components/restaurantDetail/Abount";
+import About from "../components/restaurantDetail/About";
 import MenuItems from "../components/restaurantDetail/MenuItems";
 
-export default function RestaurantDetail() {
+export default function RestaurantDetail({ route, navigation }) {
     return (
         <View>
-            <Abount />
+            <About route={route} />
             <Divider width={1.8} style={{ marginVertical: 20 }} />
             <MenuItems />
             <Text></Text>
