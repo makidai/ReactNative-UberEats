@@ -1,5 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import { Divider } from "react-native-elements";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 const styles = StyleSheet.create({
     menuItemStyle: {
@@ -14,11 +16,42 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function MenuItems() {
+export default function MenuItems({
+    restaurantName,
+    foods,
+    hideCheckbox,
+    marginLeft,
+}) {
     return (
-        <View>
-            <Text></Text>
-        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            {foods.map((food, index) => (
+                <View key={index}>
+                    <View style={styles.menuItemStyle}>
+                        {hideCheckbox ? (
+                            <></>
+                        ) : (
+                            <BouncyCheckbox
+                                iconStyle={{
+                                    borderColor: "lightgray",
+                                    borderRadius: 0,
+                                }}
+                                fillColor="green"
+                            />
+                        )}
+                        <FoodInfo food={food} />
+                        <FoodImage
+                            food={food}
+                            marginLeft={marginLeft ? marginLeft : 0}
+                        />
+                    </View>
+                    <Divider
+                        width={0.5}
+                        orientation="vertical"
+                        style={{ marginHorizontal: 20 }}
+                    />
+                </View>
+            ))}
+        </ScrollView>
     );
 }
 
